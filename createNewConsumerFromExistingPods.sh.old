@@ -1,0 +1,55 @@
+#!/bin/bash
+
+listPrecontainers="$(docker ps | grep kube-test | awk '{print $1}')"
+
+listJavaConsumers="$(docker ps --all | grep java-consumer | awk '{print $1}')"
+
+usedNetIds=()
+
+while IFS= read -r line; do
+   usedNetIds+=("$(docker inspect $line | grep NetworkMode | cut -d '"' -f4)")
+done <<< "$listJavaConsumers"
+
+
+isNotUsedId() {
+   isUsed=0
+   for id in "${usedNetIds[@]}"; do
+      if [ "$1" == "$id" ]
+      then
+          isUsed=1
+          break
+      fi 
+   done
+}
+
+
+#createName() {
+#   listExistingNames= $(docker ps --all | grep java-consumer | awk '{print $13}')
+#   count=1
+#   while : ; do
+#       if contains listExistingNames count
+#       then
+#           echo "java-consumer-$count"
+#           break
+#       fi
+#       count++
+#   done <<< "$listExistingNames"
+#}
+
+succeeded="no"
+while IFS= read -r line; do
+   netId=("$(docker inspect $line | grep NetworkMode | cut -d '"' -f4)")
+   isNotUsedId "$netId"
+   echo "$isUsed"
+   if [ "$isUsed" -eq 0 ]  ;
+   then
+       succeeded="yes"
+       bash createConsumer.sh "$netId"
+       break
+   fi
+done <<< "$listPrecontainers"
+
+if [ "$succeeded" == "no" ]
+then
+    echo "No pods left"
+fi
