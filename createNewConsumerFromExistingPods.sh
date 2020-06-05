@@ -58,7 +58,8 @@ then
         then
             succeeded="yes"
             cgroup=("$(docker inspect $line | grep CgroupParent | cut -d '"' -f4)")
-            bash createConsumer.sh "$netId" "$cgroup"
+            library=("$(docker inspect $line | grep Source | grep sharedlibrary | cut -d '"' -f4)")
+            bash createConsumer.sh "$netId" "$cgroup" "$library"
             break
         else
             succeeded="no"
