@@ -112,3 +112,199 @@ docker ps | grep consumer
 sudo su
 ls
 exit
+echo "# scriptsworker" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git config --global user.email "jordy.dieltjens@student.kuleuven.be"
+git config --global user.user "r0486682"
+git commit -m "first commit"
+git add .
+ls
+git remote add origin https://github.com/r0486682/scriptsworker.git
+git push -u origin master
+git add *
+git commit -m "the scripts"
+git push -u origin master
+git rm .cache
+git rm -r .cache
+ls
+cat createNewConsumerFromExistingPods.sh
+sudo su
+docker ps | grep -c consumer
+sudo su
+exit
+sudo su
+exit
+sudo su
+docker ps  | grep consumer
+sudo su$
+sudo su
+ls
+cd ..
+ls
+cd .ssh
+cd .ssh/
+cd /.ssh/
+cd .ssh
+cd ~/.ssh
+ls
+cat testo go
+cat testgo
+ls
+cat authorized_keys 
+sudo
+sudo su
+ls
+cat createConsumer.sh 
+ls
+cat createConsumer.sh 
+ls
+cat createConsumer.sh 
+sudo su
+ls
+sudo su
+cd heterogenous-scaling-in-k8s/apps/workload-generator/
+cd ..
+exit
+sudo s
+sudo su
+docker run -d  --memory=0 --mount source=/var/lib/kubelet/pods/1afe43c6-a360-11ea-9b49-fa163eee52e2/volumes/kubernetes.io~empty-dir/test,target=/test --cpu-shares="368"  --cpu-period="100000" --cgroup-paren
+t="$2" --cpu-quota="36000" --ipc="$1" --net="$1" -e "DNS_NAMESPACE=gold" -e "STRESS_SIZE=100" -e "POOL_SIZE=10" r0486682/java-consumerdocker run -d  --memory=0 --mount source=/var/lib/kubelet/pods/1afe43c6-a360-11ea-9b49-fa163eee52e2/volumes/kubernetes.io~empty-dir/test,target=/test --cpu-shares="368"  --cpu-period="100000" --cgroup-paren
+t="$2" --cpu-quota="36000" --ipc="$1" --net="$1" -e "DNS_NAMESPACE=gold" -e "STRESS_SIZE=100" -e "POOL_SIZE=10" r0486682/java-consume
+docker run -d  --memory=0 -v source=/var/lib/kubelet/pods/1afe43c6-a360-11ea-9b49-fa163eee52e2/volumes/kubernetes.io~empty-dir/test,target=/test --cpu-shares="368"  --cpu-period="100000" --cgroup-paren
+docker run -d  --memory=0 -v source=/var/lib/kubelet/pods/1afe43c6-a360-11ea-9b49-fa163eee52e2/volumes/kubernetes.io~empty-dir/test,target=/test --cpu-shares="368"  --cpu-period="100000" --cgroup-parent="$2" --cpu-quota="36000" --ipc="$1" --net="$1" -e "DNS_NAMESPACE=gold" -e "STRESS_SIZE=100" -e "POOL_SIZE=10" r0486682/java-consumer
+sudo su
+docker inspect
+ls
+cat createNewConsumerFromExistingPods.sh
+sudo su
+ls
+nano createConsumer.sh 
+sudo su
+nano createConsumer.sh exit
+exit
+sudo su
+exit
+sudo su
+exit
+sudo su
+exit
+ls
+./createNewConsumerFromExistingPods.sh
+sudo su
+sudo su
+clear
+ls
+nano createNewConsumerFromExistingPods.sh
+sudo su
+mkdir app
+cd app/
+mkdir lib
+ls
+ls app
+ls
+cd app/lib
+cd /app/lib
+cd app
+cd lib
+l
+ls
+sudo s
+sudo su
+ls
+rmdir app/lib
+rmdir app
+ls
+cat test.sh
+./createNewConsumerFromExistingPods.sh 1
+sudo su
+ls
+sudo 
+sudo su
+helm list
+exit
+ls
+docker pull r0486682/java-consumer:split
+sudo su
+kubectl get deployments
+sudo su
+exit
+docker ps
+sudo su
+docker ps
+sudo su
+ls
+sudo su
+git diff origin/master..HEAD
+ls
+git add getNetworkids.sh 
+git commit createNewConsumerFromExistingPods.sh getNetworkids.sh
+sudo su
+exit
+ls
+cat createConsumer.sh 
+cat createNewConsumerFromExistingPods.sh
+cat removeOldestConsumer.sh 
+sudo su
+exit
+cat createConsumer.sh 
+docker run -d  --memory=0  --cpu-shares="368"  --cpu-period="100000" --cpu-quota="36000"  -e "DNS_NAMESPACE=gold" -e "STRESS_SIZE=100" -e "POOL_SIZE=10" r0486682/java-consumer:split
+sudo su
+docker ps --all
+sudo su
+docker ps
+sudo su
+exit
+sudo su
+exit
+sudo su
+exit
+docker ps
+sudo su
+exit
+sudo su
+exit
+docker ps --all
+sudo su
+ls
+cd ..
+ls
+cd var
+cd log
+ls
+exit
+sudo 
+exit
+sudo
+sudo su
+exit
+sudo su
+exit
+sudo su
+docker ps
+sudo su
+docker ps
+sudo su
+exit
+sudo su
+date +%Z
+date
+date +%s
+date +%s%3N
+date +%s%N
+sudo su
+exit
+sudo su
+sudo su
+sudo su
+clear
+nano createNewConsumerFromExistingPods.sh
+ls
+cat getNetworkids.sh 
+cat getDockerTiming.sh
+nano getDockerTiming.sh 
+clear
+sudo su
+docker ps
+sudo su

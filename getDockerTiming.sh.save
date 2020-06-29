@@ -1,0 +1,7 @@
+#!/bin/bash
+container="$(docker ps | grep java-consumer| awk '{print $1}')"
+containerStartedAt="$(docker inspect --format='{{.State.StartedAt}}' $container)"
+epochtime="$(date --date=$containerStartedAt +%s%N)"
+
+echo $epochtime
+echo docker logs a5ba7f327c71 | head -n 70 | grep "Started Consumer" | cut  -d ':' -f4
