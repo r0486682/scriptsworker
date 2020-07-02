@@ -1,5 +1,5 @@
 #!/bin/bash
-listPrecontainers="$(docker ps | grep r0486682/pause | awk '{print $1}')"
+listPrecontainers="$(docker ps | grep karlherler/pause | awk '{print $1}')"
 
 
 while IFS= read -r line; do
