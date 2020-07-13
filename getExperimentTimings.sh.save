@@ -1,0 +1,61 @@
+#!/bin/bash
+containers="$(docker ps | tac | grep java-consumer| awk '{print $1}')"
+container1Time=0
+count=1
+while IFS= read -r container; do
+    echo "Container $count"
+    count=$(expr $count + 1)
+    containerStartedAt="$(docker inspect --format='{{.State.StartedAt}}' $container)"
+    containerCreatedAt="$(docker inspect -f '{{ .Created }}' $container)"
+    startingApplication="$(docker logs $container | head -n 20 | grep 'Starting ConsumerApplication' | grep -Eo '([0-9][0-9][0-9][0-9])-([0-9][0-9])-([0-9][0-9]) ([0-9][0-9]:[0-9][0-9]:[0-9][0-9].[0-9][0-9][0-9])')"
+    #javaStartup="$(docker logs $container | head -n 70 | grep 'Started ConsumerApplication' | cut -d ':' -f4)"
+    javaConsumerStartDate="$(docker logs $container | head -n 70 | grep 'Tomcat started' | grep -Eo '([0-9][0-9][0-9][0-9])-([0-9][0-9])-([0-9][0-9]) ([0-9][0-9]:[0-9][0-9]:[0-9][0-9].[0-9][0-9][0-9])')"
+    javaReady="$(docker logs $container | head -n 80 | grep 'schedule consume for tasks' | grep -Eo '([0-9][0-9][0-9][0-9])-([0-9][0-9])-([0-9][0-9]) ([0-9][0-9]:[0-9][0-9]:[0-9][0-9].[0-9][0-9][0-9])' | head -n 1)"
+    javaDone="$(docker logs $container | head -n 80 | grep 'stop check for tasks' | grep -Eo '([0-9][0-9][0-9][0-9])-([0-9][0-9])-([0-9][0-9]) ([0-9][0-9]:[0-9][0-9]:[0-9][0-9].[0-9][0-9][0-9])' | head -n 1)"
+    
+#    echo ""
+#    echo "Exact dates"
+#    echo ""
+#    echo "Container created at: $containerCreatedAt"
+#    echo "Container started at: $containerStartedAt"
+#    echo "Application starting: $startingApplication"
+#    echo "Application started: $javaConsumerStartDate"
+#    echo "First request received: $javaReady"
+#    echo "Request done: $javaDone"
+
+    #Convert to epoch times to work with
+    epochtimeStartedAt="$(date --date=$containerStartedAt +%s%3N)"
+    epochtimeCreatedAt="$(date -d $containerCreatedAt +%s%3N)"
+    epochtimeStartingApplication=$(date --date="$startingApplication" +%s%3N)
+    epochtimeConsumerStartDate=$(date --date="$javaConsumerStartDate" +%s%3N)
+    epochReady=$(date --date="$javaReady" +%s%3N)
+    epochDone=$(date --date="$javaDone" +%s%3N)
+    if
+#    echo ""
+#    echo "Epoch time"
+#    echo ""
+#    echo "Epoch time created at: $epochtimeCreatedAt"
+#    echo "Epoch time started at: $epochtimeStartedAt"
+#    echo "Epoch time starting application: $epochtimeStartingApplication"
+#    echo "Epoch time consumer start date: $epochtimeConsumerStartDate"
+#    echo "Epoch time task ready: $epochReady"
+#    echo "Epoch time task done: $epochDone"
+
+    diffStartedCreated=$(($epochtimeStartedAt-$epochtimeCreatedAt))
+    diffStartingStarted=$(($epochtimeStartingApplication-$epochtimeStartedAt))
+    diffConsumerStartStarting=$(($epochtimeConsumerStartDate-$epochtimeStartingApplication))
+    diffReadyStart=$(($epochReady-$epochtimeConsumerStartDate))
+    diffDoneReady=$(($epochDone-$epochReady))
+    diffTotalTime=$(($epochDone-$epochtimeCreatedAt))
+
+    echo ""
+    echo "Difference in ms"
+    echo ""
+    echo "Between created and started container $diffStartedCreated"
+    echo "Between starting application and started container $diffStartingStarted"
+    echo "Between consumer started and application starting $diffConsumerStartStarting"
+    echo "Between ready and consumer start: $diffReadyStart"
+    echo "Between done and ready: $diffDoneReady"
+    echo "Total time: $diffTotalTime"
+
+done <<< "$containers"

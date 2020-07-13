@@ -308,3 +308,53 @@ clear
 sudo su
 docker ps
 sudo su
+cd /boot/
+nano config-$(uname -r)
+cat config-$(uname -r) 
+cat config-$(uname -r)  | grep CONFIG_MMU
+docker ps
+sudo su
+sudo su 
+ls
+smaps
+cd /proc/26586
+ls
+cat maps
+cat smaps
+nano maps
+docker ps
+sudo su
+sudo su
+ls
+nano getDockerTiming.sh
+ls
+sudo su
+sudo us
+sudo su
+exit
+sudo s
+sudo su
+exit
+sudo su
+exit
+docker ps
+sudo su
+sudo suo
+sudo su
+./getExperimentTimings.sh
+sudo su
+exit
+sudo su
+lear
+clear
+sudo su
+sudo su
+nano getAbelExperimentTimings.sh 
+sudo su
+exit
+cat createConsumer.sh 
+sudo us
+sudo su
+clear
+docker ps
+sudo su
