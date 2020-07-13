@@ -83,7 +83,7 @@ while IFS= read -r container; do
     diffStartingStarted=$(($epochtimeStartingApplication-$epochtimeStartedAt))
     diffConsumerStartStarting=$(($epochtimeConsumerStartDate-$epochtimeStartingApplication))
     diffReadyStart=$(($epochReady-$epochtimeConsumerStartDate))
-    diffSpringReady=$(($epochSpringboot-$epochReady))
+    diffSpringReady=$(($epochSpringboot-$epochtimeConsumerStartDate))
     diffDoneSpring=$(($epochDone-$epochSpringboot))
     diffTest=$(($epochDone-$epochReady))
     diffTotalTime=$(($epochDone-$epochNetCreate))
@@ -112,6 +112,6 @@ while IFS= read -r container; do
     echo "1000 tasks: $diffTime1000Tasks"
     echo "Adding to csv file"
 
-    echo "$(cat $1)$diffNetCreateStarted,$diffNetStartedCreated,$diffStartedCreated,$diffStartingStarted,$diffConsumerStartStarting,$diffReadyStart,$diffSpringReady,$diffDoneSpring,$diffTime1000Tasks,$diffTotalTime, $diffCreateContainers,$diffTotalContainer, diffTime1000SinceCreation,," > $1
+    echo "$(cat $1)$diffNetCreateStarted,$diffNetStartedCreated,$diffStartedCreated,$diffStartingStarted,$diffConsumerStartStarting,$diffSpringReady,$diffDoneSpring,$diffTime1000Tasks,$diffTotalTime, $diffCreateContainers,$diffTotalContainer, $diffTime1000SinceCreation,," > $1
 
 done <<< "$containers"
