@@ -9,6 +9,13 @@ count=1
 container1Created=0
 while IFS= read -r container; do
     echo "Container $count"
+    
+    if [ "$(docker logs $container | grep -c 'stop check for tasks')" -lt "1000" ] 
+     then
+         echo "Not enough tasks done yet"
+         exit 1
+    fi
+    
     count=$(expr $count + 1)
     networkContainer="$(docker inspect $container | grep NetworkMode | cut -d '"' -f4 | cut -d ':' -f2)"
     networkContainerCreated="$(docker inspect -f '{{ .Created }}' $networkContainer)"
@@ -21,6 +28,8 @@ while IFS= read -r container; do
     javaReady="$(docker logs $container | head -n 80 | grep 'schedule consume for tasks' | grep -Eo '([0-9][0-9][0-9][0-9])-([0-9][0-9])-([0-9][0-9]) ([0-9][0-9]:[0-9][0-9]:[0-9][0-9].[0-9][0-9][0-9])' | head -n 1)"
     springBootJvm="$(docker logs $container | head -n 70 | grep 'Started ConsumerApplication' | grep -Eo '([0-9][0-9][0-9][0-9])-([0-9][0-9])-([0-9][0-9]) ([0-9][0-9]:[0-9][0-9]:[0-9][0-9].[0-9][0-9][0-9])')"
     javaDone="$(docker logs $container | head -n 80 | grep 'stop check for tasks' | grep -Eo '([0-9][0-9][0-9][0-9])-([0-9][0-9])-([0-9][0-9]) ([0-9][0-9]:[0-9][0-9]:[0-9][0-9].[0-9][0-9][0-9])' | head -n 1)"
+    java1000Tasks="$(docker logs $container  | grep  'stop check for tasks' | head -n 1000 | tail -n 1 | grep -Eo '([0-9][0-9][0-9][0-9])-([0-9][0-9])-([0-9][0-9]) ([0-9][0-9]:[0-9][0-9]:[0-9][0-9].[0-9][0-9][0-9])')"
+
     #springbootJvm="2020-07-06 13:53:51.234"
 
     echo ""
@@ -35,6 +44,7 @@ while IFS= read -r container; do
     echo "First request received: $javaReady"
     echo "Spring: $springBootJvm"
     echo "Request done: $javaDone"
+    echo "1000 request done: $java1000Tasks"
 
     #Convert to epoch times to work with
     epochNetCreate="$(date --date=$networkContainerCreated +%s%3N)"
@@ -46,7 +56,7 @@ while IFS= read -r container; do
     epochReady=$(date --date="$javaReady" +%s%3N)
     epochSpringboot=$(date --date="$springBootJvm" +%s%3N)
     epochDone=$(date --date="$javaDone" +%s%3N)
-    
+    epoch1000Done=$(date --date="$java1000Tasks" +%s%3N)
 
     #Check if container1 startuptime is filled
     if [ "$container1Created" -eq "0" ]; then 
@@ -65,7 +75,8 @@ while IFS= read -r container; do
     echo "Epoch time task ready: $epochReady"
     echo "Epoch time spring: $epochSpringboot"
     echo "Epoch time task done: $epochDone"
-
+    echo "Epoch time 1000 tasks done: $epoch1000Done"
+    
     diffNetCreateStarted=$(($epochNetStarted-$epochNetCreate))
     diffNetStartedCreated=$(($epochtimeCreatedAt-$epochNetStarted))
     diffStartedCreated=$(($epochtimeStartedAt-$epochtimeCreatedAt))
@@ -78,6 +89,11 @@ while IFS= read -r container; do
     diffTotalTime=$(($epochDone-$epochNetCreate))
     diffTotalContainer=$(($epochDone-$container1Created))
     diffCreateContainers=$(($epochNetCreate-$container1Created))
+    
+    
+    diffTime1000Tasks=$(($epoch1000Done-$epochReady))
+    diffTime1000SinceCreation=$(($epoch1000Done-$container1Created))
+    
     echo "test $diffTest"
     echo ""
     echo "Difference in ms"
@@ -93,9 +109,9 @@ while IFS= read -r container; do
     echo "Total time: $diffTotalTime"
     echo "Time since container 1 creation: $diffTotalContainer"
     echo "Difference pause container creation: $diffCreateContainers"
-
+    echo "1000 tasks: $diffTime1000Tasks"
     echo "Adding to csv file"
 
-    echo "$(cat $1)$diffNetCreateStarted,$diffNetStartedCreated,$diffStartedCreated,$diffStartingStarted,$diffConsumerStartStarting,$diffReadyStart,$diffSpringReady,$diffDoneSpring,$diffTotalTime,$diffTotalContainer,$diffCreateContainers,," > $1
+    echo "$(cat $1)$diffNetCreateStarted,$diffNetStartedCreated,$diffStartedCreated,$diffStartingStarted,$diffConsumerStartStarting,$diffReadyStart,$diffSpringReady,$diffDoneSpring,$diffTime1000Tasks,$diffTotalTime, $diffCreateContainers,$diffTotalContainer, diffTime1000SinceCreation,," > $1
 
 done <<< "$containers"

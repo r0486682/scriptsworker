@@ -358,3 +358,5 @@ sudo su
 clear
 docker ps
 sudo su
+ls
+sudo su

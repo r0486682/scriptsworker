@@ -97,6 +97,6 @@ while IFS= read -r container; do
     echo "1000 tasks: $diffTime1000Tasks"
     echo "Adding to csv file"
 
-    echo "$(cat $1)$diffStartedCreated,$diffStartingStarted,$diffConsumerStartStarting,$diffSpringReady,$diffDoneSpring, $diffTime1000Tasks, $diffTotalTime,$diffCreateContainers, $diffTotalContainer,diffTime1000SinceCreation,," > $1
+    echo "$(cat $1)$diffStartedCreated,$diffStartingStarted,$diffConsumerStartStarting,$diffSpringReady,$diffDoneSpring, $diffTime1000Tasks, $diffTotalTime,$diffCreateContainers, $diffTotalContainer,$diffTime1000SinceCreation,," > $1
 
 done <<< "$containers"
