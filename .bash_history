@@ -360,3 +360,5 @@ docker ps
 sudo su
 ls
 sudo su
+git pull
+sudo su
