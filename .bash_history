@@ -362,3 +362,11 @@ ls
 sudo su
 git pull
 sudo su
+docker ps
+sudo su
+nano experimentsv2/abel/nolibrarysharing/6container.csv 
+sudo su
+docker ps
+sudo su
+docker ps
+sudo su
