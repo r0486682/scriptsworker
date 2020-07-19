@@ -1,2 +1,6 @@
 container 1, Duration starting the pause container, Duration creating application container, Duration starting up the application container, Duration starting up the JVM, Duration starting up Tomcat server, Duration finalizing spring boot startup, Duration finish first task,Duration finish 1000 tasks,Total time,Difference Creation time first container, Total time since first container,Total time 1000 tasks since container 1,,
 ,524,1453,358,15259,66298,102,2197,999110,86191, 0,86191, 1081511,,
+,561,1492,369,14494,65612,102,2015,999216,84645, 0,84645, 1080544,,
+,667,1429,356,15266,66103,102,1401,999122,85324, 0,85324, 1081647,,
+,561,1447,455,14259,68099,97,1600,999118,86518, 0,86518, 1082443,,
+,508,1430,361,12492,59600,199,1699,999043,76289, 0,76289, 1071829,,
