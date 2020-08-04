@@ -10,11 +10,11 @@ container1Created=0
 while IFS= read -r container; do
     echo "Container $count"
     
-    if [ "$(docker logs $container | grep -c 'stop check for tasks')" -lt "1000" ] 
-     then
-         echo "Not enough tasks done yet"
-         exit 1
-    fi
+    #if [ "$(docker logs $container | grep -c 'stop check for tasks')" -lt "1000" ] 
+    # then
+    #     echo "Not enough tasks done yet"
+    #     exit 1
+    #fi
     
     count=$(expr $count + 1)
     networkContainer="$(docker inspect $container | grep NetworkMode | cut -d '"' -f4 | cut -d ':' -f2)"
@@ -112,6 +112,6 @@ while IFS= read -r container; do
     echo "1000 tasks: $diffTime1000Tasks"
     echo "Adding to csv file"
 
-    echo "$(cat $1)$diffNetCreateStarted,$diffNetStartedCreated,$diffStartedCreated,$diffStartingStarted,$diffConsumerStartStarting,$diffSpringReady,$diffDoneSpring,$diffTime1000Tasks,$diffTotalTime, $diffCreateContainers,$diffTotalContainer, $diffTime1000SinceCreation,," > $1
+    echo "$(cat $1)$diffNetCreateStarted,$diffNetStartedCreated,$diffStartedCreated,$diffStartingStarted,$diffConsumerStartStarting,$diffSpringReady,$diffDoneSpring,0,$diffTotalTime, $diffCreateContainers,$diffTotalContainer,0,," > $1
 
 done <<< "$containers"
