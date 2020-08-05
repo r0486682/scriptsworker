@@ -1,12 +1,10 @@
-container 1, Duration starting up the application container, Duration starting up the JVM, Duration starting up Tomcat server, Duration finalizing spring boot startup, Duration finish first task,Duration finish 1000 tasks,Total time, During Difference Creation time first container, Total time since first container,Total time 1000 tasks since container 1,,container 2, Duration starting up the application container, Duration starting up the JVM, Duration starting up Tomcat server, Duration finalizing spring boot startup, Duration finish first task,Duration finish 1000 tasks,Total time, During Difference Creation time first container, Total time since first container,Total time 1000 tasks since container 1,,
+container 1, Duration starting up the application container, Duration starting up the JVM, Duration starting up Tomcat server, Duration finalizing spring boot startup, Duration finish first task,Duration finish 1000 tasks,Total time, During Difference Creation time first container, Total time since first container,Total time 1000 tasks since container 1,container 2, Duration starting up the application container, Duration starting up the JVM, Duration starting up Tomcat server, Duration finalizing spring boot startup, Duration finish first task,Duration finish 1000 tasks,Total time, During Difference Creation time first container, Total time since first container,Total time 1000 tasks since container 1,
 ,1492,14929,68287,221,16787, 999318, 101716,0, 101716,1082432,,1576,15429,72393,194,13805, 999412, 103397,15, 103412,1086921,,
 ,1433,15921,69987,200,2912, 999111, 90453,0, 90453,1085060,,1381,15036,68415,94,5493, 999410, 90419,31, 90450,1082966,,
 ,1506,14428,69907,101,13393, 999102, 99335,0, 99335,1083649,,1397,14728,69807,91,7999, 999400, 94022,18, 94040,1083648,,
 ,1438,14827,70211,184,2205, 999614, 88865,0, 88865,1084584,,1420,15133,69714,195,2303, 999201, 88765,108, 88873,1083777,,
 ,1504,13907,71114,290,10606, 999005, 97421,0, 97421,1083516,,1504,14406,69800,111,17393, 999392, 103214,0, 103214,1083516,,
 ,1788,15610,71793,117,25693, 999715, 115001,0, 115001,1087315,,1927,15733,72605,188,24508, 999024, 114961,36, 114997,1087415,,
-
-,796,8828,39169,385,19417, 0, 68595,0, 68595,0,,802,8755,39706,317,18988, 0, 68568,17, 68585,0,,738,9329,38588,491,19402, 0, 68548,37, 68585,0,,
 ,758,15490,71199,198,9303, 0, 96948,0, 96948,0,,724,15607,71406,186,8917, 0, 96840,18, 96858,0,,
 ,513,15226,73399,193,9916, 0, 99247,0, 99247,0,,518,14918,72299,110,11399, 0, 99244,0, 99244,0,,
 ,658,14923,69790,97,13807, 0, 99275,0, 99275,0,,657,14814,70206,100,13499, 0, 99276,0, 99276,0,,
