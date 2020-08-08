@@ -10,11 +10,11 @@ container1Created=0
 while IFS= read -r container; do
     echo "Container $count"
     
-    #if [ "$(docker logs $container | grep -c 'stop check for tasks')" -lt "1000" ] 
-    # then
-    #     echo "Not enough tasks done yet"
-    #     exit 1
-    #fi
+    if [ "$(docker logs $container | grep -c 'stop check for tasks')" -lt "1000" ] 
+     then
+         echo "Not enough tasks done yet"
+         exit 1
+    fi
     
     count=$(expr $count + 1)
     networkContainer="$(docker inspect $container | grep NetworkMode | cut -d '"' -f4 | cut -d ':' -f2)"
